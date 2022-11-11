@@ -31,6 +31,7 @@ const Update =()=>{
   }, []);
 
   const updateHandler = (e) =>{
+    console.log(distance);
     e.preventDefault();
     axios
       .put("http://localhost:8080/updateclient", {
@@ -41,10 +42,10 @@ const Update =()=>{
         address: address,
         source: source,
         destination: destination,
-        distance:distance,
+        distance: distance,
         weight: weight,
         dispatchTime: dispatchTime,
-        arrivalTime: arrivalTime,
+        arrivalTime: arrivalTime
       })
       .then(() => {
         navigate("/dashboard");
@@ -70,7 +71,6 @@ const Update =()=>{
         <label>Email address</label>
         <input type="email" className="form-control" value={email} onChange={(e) =>{setEmail(e.target.value)}} />
         <div id="emailHelp" className="form-text">
-          We'll never share your email with anyone else.
         </div>
       </div>
 

@@ -20,27 +20,29 @@ const Dashboard = () => {
   const setToLocalStorage = (
     clientId,
     name,
-    source,
-    destination,
-    weight,
-    distance,
-    dispatchTime,
-    arrivalTime,
     email,
     phone,
-    address
+    address,
+    source,
+    destination,
+    distance,
+    weight,
+    dispatchTime,
+    arrivalTime
   ) => {
     localStorage.setItem("id", clientId);
     localStorage.setItem("name", name);
-    localStorage.setItem("source", source);
-    localStorage.setItem("destination", destination);
-    localStorage.setItem("weight", weight);
-    localStorage.setItem("distance", distance);
-    localStorage.setItem("dispatchTime", dispatchTime);
-    localStorage.setItem("arrivalTime", arrivalTime);
     localStorage.setItem("email", email);
     localStorage.setItem("phone", phone);
     localStorage.setItem("address", address);
+    localStorage.setItem("source", source);
+    localStorage.setItem("destination", destination);
+    localStorage.setItem("distance", distance);
+    localStorage.setItem("weight", weight);
+    localStorage.setItem("dispatchTime", dispatchTime);
+    localStorage.setItem("arrivalTime", arrivalTime);
+   
+    
   };
   const sortDateAsc = () => {}
   const sortDateDesc = () =>{}
@@ -88,15 +90,16 @@ const Dashboard = () => {
                           setToLocalStorage(
                             eachData.clientId,
                             eachData.name,
+                            eachData.email, 
+                            eachData.phone,
+                            eachData.address,
                             eachData.source,
                             eachData.destination,
+                            eachData.distance,
                             eachData.weight,
                             eachData.dispatchTime,
                             eachData.arrivalTime,
-                            eachData.distance,
-                            eachData.email,
-                            eachData.phone,
-                            eachData.address
+                          
                           )
                         }
                       >
