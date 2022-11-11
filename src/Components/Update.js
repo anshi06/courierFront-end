@@ -13,6 +13,7 @@ const Update =()=>{
   const [weight, setWeight] = useState();
   const [dispatchTime, setdispatchTime] = useState();
   const [arrivalTime, setArrivalTime] = useState();
+  const [price, setPrice] = useState();
 
   const navigate = useNavigate();
 
@@ -28,10 +29,10 @@ const Update =()=>{
     setWeight(localStorage.getItem("weight"));
     setdispatchTime(localStorage.getItem("dispatchTime"));
     setArrivalTime(localStorage.getItem("arrivalTime"));
+    setPrice(localStorage.getItem("price"));
   }, []);
 
   const updateHandler = (e) =>{
-    console.log(distance);
     e.preventDefault();
     axios
       .put("http://localhost:8080/updateclient", {
@@ -45,7 +46,8 @@ const Update =()=>{
         distance: distance,
         weight: weight,
         dispatchTime: dispatchTime,
-        arrivalTime: arrivalTime
+        arrivalTime: arrivalTime,
+        price :price
       })
       .then(() => {
         navigate("/dashboard");
@@ -102,7 +104,7 @@ const Update =()=>{
         <label  className="form-label">
           Distance
         </label>
-        <input type="number" className="form-control" onChange={(e) =>{setDistance(e.target.value)}} />
+        <input type="number" className="form-control"value={distance} onChange={(e) =>{setDistance(e.target.value)}} />
       </div>
       <div className="mb-3">
         <label  className="form-label">
@@ -121,6 +123,12 @@ const Update =()=>{
           Arrival Date
         </label>
         <input type="date" className="form-control" value={arrivalTime} onChange={(e) =>{setArrivalTime(e.target.value)}} />
+      </div>
+      <div className="mb-3">
+        <label  className="form-label">
+          Price(Rs.)
+        </label>
+        <input type="number" className="form-control" value={price} onChange={(e) =>{setPrice(e.target.value)}} />
       </div>
 
       <button type="submit" className="btn btn-primary" onClick={updateHandler}>

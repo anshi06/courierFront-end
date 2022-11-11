@@ -28,7 +28,8 @@ const Dashboard = () => {
     distance,
     weight,
     dispatchTime,
-    arrivalTime
+    arrivalTime,
+    price
   ) => {
     localStorage.setItem("id", clientId);
     localStorage.setItem("name", name);
@@ -41,7 +42,7 @@ const Dashboard = () => {
     localStorage.setItem("weight", weight);
     localStorage.setItem("dispatchTime", dispatchTime);
     localStorage.setItem("arrivalTime", arrivalTime);
-   
+    localStorage.setItem("price", price)
     
   };
   const sortDateAsc = () => {}
@@ -68,6 +69,7 @@ const Dashboard = () => {
               <i className="fa-solid fa-sort-down" onClick={sortDateAsc}></i>
             </th>
             <th scope="col">Distance</th>
+            <th scope="col">Price</th>
           </tr>
         </thead>
         {data.map((eachData) => {
@@ -82,6 +84,7 @@ const Dashboard = () => {
                   <td>{eachData.weight}</td>
                   <td>{eachData.dispatchTime}</td>
                   <td>{eachData.distance}</td>
+                  <td>{eachData.price}</td>
                   <td>
                     <Link to="/update">
                       <button
@@ -99,6 +102,7 @@ const Dashboard = () => {
                             eachData.weight,
                             eachData.dispatchTime,
                             eachData.arrivalTime,
+                            eachData.price
                           
                           )
                         }

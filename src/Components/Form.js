@@ -14,6 +14,7 @@ const Form = () => {
   const [weight, setWeight] = useState();
   const [dispatchTime, setdispatchTime] = useState();
   const [arrivalTime, setArrivalTime] = useState();
+  const [price, setPrice] = useState();
   const history = useNavigate();
   const saveHandler = (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ const Form = () => {
         weight: weight,
         dispatchTime: dispatchTime,
         arrivalTime: arrivalTime,
+        price : price
       })
       .then((res) => {
         console.log(res);
@@ -85,7 +87,7 @@ const Form = () => {
       </div>
       <div className="mb-3">
         <label  className="form-label">
-          Distance
+          Distance(km)
         </label>
         <input type="number" className="form-control" onChange={(e) =>{setDistance(e.target.value)}} />
       </div>
@@ -110,7 +112,12 @@ const Form = () => {
         <input type="date" name="begin" className="form-control"
         placeholder="yyyy-mm-dd" 
          onChange={(e) =>{setArrivalTime(e.target.value)}}/>
-        
+      </div>
+      <div className="mb-3">
+        <label  className="form-label">
+          Price(Rs.)
+        </label>
+        <input type="number" className="form-control" onChange={(e) =>{setPrice(e.target.value)}} />
       </div>
 
       <button type="submit" className="btn btn-primary" onClick={saveHandler}>
