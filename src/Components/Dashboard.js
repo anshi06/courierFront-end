@@ -28,7 +28,7 @@ const Dashboard = () => {
     distance,
     weight,
     dispatchTime,
-    arrivalTime,
+    arrivalTime
   ) => {
     localStorage.setItem("id", clientId);
     localStorage.setItem("name", name);
@@ -79,7 +79,7 @@ const Dashboard = () => {
                   eachData.distance,
                   eachData.weight,
                   eachData.dispatchTime,
-                  eachData.arrivalTime,
+                  eachData.arrivalTime
                 )
               }
             >
@@ -98,12 +98,25 @@ const Dashboard = () => {
       </tr>
     );
   });
+  
 
   return (
     <>
+      <div className= "p-2 mb-2 mt-2 bg-secondary text-white d-flex justify-content rounded-pill">
+        <div className="position-relative top-0 start-50 translate-middle-x">
+          <h2 class="fw-bolder">Client's Information</h2>
+        </div>
+      </div>
       <div className="d-flex justify-content-between m-2">
         <Link to="/form">
-          <button className="btn btn-secondary">Add new Client</button>
+          <button type="button" class="btn btn-outline-secondary">
+            Add new Client
+          </button>
+        </Link>
+        <Link to="/">
+          <button type="button" className="btn btn-outline-info">
+            Logout
+          </button>
         </Link>
       </div>
       <table className="table">
@@ -116,12 +129,12 @@ const Dashboard = () => {
             <th scope="col">Weight</th>
             <th scope="col">
               <button
-                className="fa-solid fa-sort-up"
+                className="fa-solid fa-sort-up" title= "Sort in Desc"
                 onClick={sortDateDesc}
               ></button>
               DispatchDate
               <button
-                className="fa-solid fa-sort-down"
+                className="fa-solid fa-sort-down" title= "Sort in Asc"
                 onClick={sortDateAsc}
               ></button>
             </th>

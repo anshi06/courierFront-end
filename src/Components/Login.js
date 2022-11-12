@@ -28,8 +28,10 @@ const Login = () => {
   }
   return (
     <>
-      <form className="form-control">
-        <div className="mb-3">
+        <div className=" mt-3 w-50 p-3 badge bg-dark text-wrap position-absolute top-0 start-50 translate-middle-x">
+          <h2 class="fw-bolder">Admin Login</h2>
+          <form className="form-control">
+        <div className="mb-4">
           <label>
             Username
           </label>
@@ -42,7 +44,6 @@ const Login = () => {
             
           />
           <div id="emailHelp" className="form-text">
-            We'll never share your email with anyone else.
           </div>
         </div>
         <div className="mb-3">
@@ -60,6 +61,7 @@ const Login = () => {
           Submit
         </button>
       </form>
+        </div>
       <ToastContainer
         position="top-center"
         autoClose={5000}
