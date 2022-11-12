@@ -13,7 +13,7 @@ const Update =()=>{
   const [weight, setWeight] = useState();
   const [dispatchTime, setdispatchTime] = useState();
   const [arrivalTime, setArrivalTime] = useState();
-  const [price, setPrice] = useState();
+  //const [price, setPrice] = useState();
 
   const navigate = useNavigate();
 
@@ -29,7 +29,7 @@ const Update =()=>{
     setWeight(localStorage.getItem("weight"));
     setdispatchTime(localStorage.getItem("dispatchTime"));
     setArrivalTime(localStorage.getItem("arrivalTime"));
-    setPrice(localStorage.getItem("price"));
+    //setPrice(localStorage.getItem("price"));
   }, []);
 
   const updateHandler = (e) =>{
@@ -47,7 +47,7 @@ const Update =()=>{
         weight: weight,
         dispatchTime: dispatchTime,
         arrivalTime: arrivalTime,
-        price :price
+       // price :price
       })
       .then(() => {
         navigate("/dashboard");
@@ -123,12 +123,6 @@ const Update =()=>{
           Arrival Date
         </label>
         <input type="date" className="form-control" value={arrivalTime} onChange={(e) =>{setArrivalTime(e.target.value)}} />
-      </div>
-      <div className="mb-3">
-        <label  className="form-label">
-          Price(Rs.)
-        </label>
-        <input type="number" className="form-control" value={price} onChange={(e) =>{setPrice(e.target.value)}} />
       </div>
 
       <button type="submit" className="btn btn-primary" onClick={updateHandler}>

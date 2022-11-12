@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
@@ -16,6 +18,7 @@ const Login = () => {
         console.log(res);
         console.log(res.data);
         if(res.data === ""){
+          toast("Please enter valid email or password");
           console.log("please enter valid email")
         }
         else{
@@ -57,6 +60,18 @@ const Login = () => {
           Submit
         </button>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        />
     </>
   );
 };

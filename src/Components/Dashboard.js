@@ -29,7 +29,6 @@ const Dashboard = () => {
     weight,
     dispatchTime,
     arrivalTime,
-    price
   ) => {
     localStorage.setItem("id", clientId);
     localStorage.setItem("name", name);
@@ -42,11 +41,63 @@ const Dashboard = () => {
     localStorage.setItem("weight", weight);
     localStorage.setItem("dispatchTime", dispatchTime);
     localStorage.setItem("arrivalTime", arrivalTime);
-    localStorage.setItem("price", price)
-    
   };
-  const sortDateAsc = () => {}
-  const sortDateDesc = () =>{}
+  const sortDateAsc = () => {
+    setData(
+      [...data].sort((a, b) => (a.dispatchTime > b.dispatchTime ? 1 : -1))
+    );
+  };
+  const sortDateDesc = () => {
+    setData(
+      [...data].sort((a, b) => (a.dispatchTime < b.dispatchTime ? 1 : -1))
+    );
+  };
+  const tableBody = data.map((eachData) => {
+    return (
+      <tr key={eachData.clientId}>
+        <th scope="row">{eachData.clientId}</th>
+        <td>{eachData.name}</td>
+        <td>{eachData.source}</td>
+        <td>{eachData.destination}</td>
+        <td>{eachData.weight}</td>
+        <td>{eachData.dispatchTime}</td>
+        <td>{eachData.distance}</td>
+        <td>{eachData.price}</td>
+        <td>
+          <Link to="/update">
+            <button
+              className="btn-success"
+              onClick={() =>
+                setToLocalStorage(
+                  eachData.clientId,
+                  eachData.name,
+                  eachData.email,
+                  eachData.phone,
+                  eachData.address,
+                  eachData.source,
+                  eachData.destination,
+                  eachData.distance,
+                  eachData.weight,
+                  eachData.dispatchTime,
+                  eachData.arrivalTime,
+                )
+              }
+            >
+              Edit
+            </button>
+          </Link>
+        </td>
+        <td>
+          <button
+            className="btn-danger"
+            onClick={() => deleteHandler(eachData.clientId)}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    );
+  });
 
   return (
     <>
@@ -64,66 +115,21 @@ const Dashboard = () => {
             <th scope="col">Destination</th>
             <th scope="col">Weight</th>
             <th scope="col">
-              <i className="fa-solid fa-sort-up" onClick={sortDateDesc}></i>
+              <button
+                className="fa-solid fa-sort-up"
+                onClick={sortDateDesc}
+              ></button>
               DispatchDate
-              <i className="fa-solid fa-sort-down" onClick={sortDateAsc}></i>
+              <button
+                className="fa-solid fa-sort-down"
+                onClick={sortDateAsc}
+              ></button>
             </th>
             <th scope="col">Distance</th>
             <th scope="col">Price</th>
           </tr>
         </thead>
-        {data.map((eachData) => {
-          return (
-            <>
-              <tbody>
-                <tr>
-                  <th scope="row">{eachData.clientId}</th>
-                  <td>{eachData.name}</td>
-                  <td>{eachData.source}</td>
-                  <td>{eachData.destination}</td>
-                  <td>{eachData.weight}</td>
-                  <td>{eachData.dispatchTime}</td>
-                  <td>{eachData.distance}</td>
-                  <td>{eachData.price}</td>
-                  <td>
-                    <Link to="/update">
-                      <button
-                        className="btn-success"
-                        onClick={() =>
-                          setToLocalStorage(
-                            eachData.clientId,
-                            eachData.name,
-                            eachData.email, 
-                            eachData.phone,
-                            eachData.address,
-                            eachData.source,
-                            eachData.destination,
-                            eachData.distance,
-                            eachData.weight,
-                            eachData.dispatchTime,
-                            eachData.arrivalTime,
-                            eachData.price
-                          
-                          )
-                        }
-                      >
-                        Edit
-                      </button>
-                    </Link>
-                  </td>
-                  <td>
-                    <button
-                      className="btn-danger"
-                      onClick={() => deleteHandler(eachData.clientId)}
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </>
-          );
-        })}
+        <tbody>{tableBody}</tbody>
       </table>
     </>
   );
